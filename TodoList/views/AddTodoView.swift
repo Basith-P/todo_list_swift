@@ -14,10 +14,16 @@ struct AddTodoView: View {
         ScrollView{
             VStack {
                 TextField("Enter the title", text: $title)
-                    .background(.red)
+                    .padding()
+                    .background(Color(#colorLiteral(red: 2, green: 2, blue: 2, alpha: 1)))
+                    .cornerRadius(12)
                 Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                    /*@START_MENU_TOKEN@*/Text("Button")/*@END_MENU_TOKEN@*/
-                    
+                    Text("Save".uppercased())
+                        .foregroundColor(.white)
+                        .frame(height: 55)
+                        .frame(maxWidth: .infinity)
+                        .background(Color.accentColor)
+                        .cornerRadius(12)
                 })
 
             }.padding()
