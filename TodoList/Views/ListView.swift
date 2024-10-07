@@ -9,16 +9,20 @@ import SwiftUI
 
 struct ListView: View {
     
-    @State var items: [TodoItem] = [
-       TodoItem(title: "Buy groceries", isCompleted: false),
-       TodoItem(title: "Check on the project", isCompleted: true)
-    ]
+    @EnvironmentObject var todosViewModel: TodosViewModel
     
     var body: some View {
         List {
-            ForEach(items) {
-                item in TodoListItemView(item: item)
+            ForEach(todosViewModel.items) { item in
+                TodoListItemView(item: item)
+                    .onTapGesture {
+                        withAnimation(.linear) {
+                            todosViewModel.toggleStatus(item: item)
+                        }
+                    }
             }
+            .onDelete(perform: todosViewModel.deleteItem)
+            .onMove(perform: todosViewModel.moveItem)
         }.navigationTitle("ToDos 📝")
             .navigationBarItems(
                 leading: EditButton(),
@@ -31,5 +35,6 @@ struct ListView: View {
     NavigationView {
         ListView()
     }
+    .environmentObject(TodosViewModel())
 }
 

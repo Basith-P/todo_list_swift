@@ -27,5 +27,5 @@ struct TodoListItemView: View {
         TodoListItemView(item: TodoItem(title: "Example", isCompleted: true))
         TodoListItemView(item: TodoItem(title: "Example 2", isCompleted: false))
     }
-    .previewLayout(.sizeThatFits)
+//    .previewLayout(.sizeThatFits)
 }
